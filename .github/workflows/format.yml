@@ -42,7 +42,7 @@ jobs:
             "arrowParens": "avoid"
           }' > .prettierrc.json
           npm install --no-save prettier
-          npx prettier --write --ignore-path '.github/**/*' .
+          npx prettier --write --ignore-path .github/ .
 
       - name: Check for changes
         id: git-check
