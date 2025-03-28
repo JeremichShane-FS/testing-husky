@@ -11,7 +11,7 @@
     "lint:fix": "eslint --fix .",
     "prepare": "husky install"
   },
-  "lint-stage": {
+  "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
       "eslint --fix",
       "prettier --write"
@@ -31,6 +31,7 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
     "husky": "^8.0.0",
+    "prettier": "^3.5.3",
     "vite": "^6.2.0"
   }
 }
