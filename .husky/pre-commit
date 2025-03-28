@@ -1,5 +1,8 @@
 #!/bin/sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Run ESLint to check for code quality issues
-npx eslint .
+echo "===== Husky pre-commit hook running ====="
+echo "Running ESLint checks..."
+npx eslint . || (echo "ESLint checks failed!" && exit 1)
+echo "ESLint checks completed successfully!"
+echo "===== Husky pre-commit hook completed ====="
