@@ -2,4 +2,6 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 npx eslint . || (echo "ESLint checks failed!" && exit 1)
+# Format with Prettier
+npx prettier --write .
 npx lint-staged || (echo "Lint-staged checks failed!" && exit 1)
