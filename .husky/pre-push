@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Pull any changes from the remote before pushing
+git pull --rebase origin main
