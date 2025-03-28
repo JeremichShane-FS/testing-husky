@@ -42,7 +42,7 @@ jobs:
             "arrowParens": "avoid"
           }' > .prettierrc.json
           npm install --no-save prettier
-          npx prettier --write "**/*.{js,jsx,ts,tsx,json,css,md}" --ignore-pattern ".github/**"
+          npx prettier --write "./src/**/*.{js,jsx,ts,tsx,json,css}" --ignore-pattern ".github/**"
 
       - name: Check for changes
         id: git-check
