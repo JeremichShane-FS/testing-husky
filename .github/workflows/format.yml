@@ -1,0 +1,58 @@
+name: Format Code
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full git history is needed to get proper list of changed files
+          fetch-depth: 0
+          # This is important to ensure we can push back to the repository
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npx eslint --max-warnings=0 .
+
+      - name: Format code with Prettier
+        run: |
+          echo '{
+            "semi": true,
+            "singleQuote": true,
+            "tabWidth": 2,
+            "trailingComma": "es5",
+            "printWidth": 100,
+            "bracketSpacing": true,
+            "arrowParens": "avoid"
+          }' > .prettierrc.json
+          npm install --no-save prettier
+          npx prettier --write .
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
+
+      - name: Commit changes
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -am "style: format code with prettier"
+          git push
