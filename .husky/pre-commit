@@ -1,8 +1,5 @@
 #!/bin/sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-echo "===== Husky pre-commit hook running ====="
-echo "Running ESLint checks..."
 npx eslint . || (echo "ESLint checks failed!" && exit 1)
-echo "ESLint checks completed successfully!"
-echo "===== Husky pre-commit hook completed ====="
+
