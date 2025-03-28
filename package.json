@@ -11,6 +11,12 @@
     "lint:fix": "eslint --fix .",
     "prepare": "husky install"
   },
+  "lint-stage": {
+    "*.{js,jsx,ts,tsx,json}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
