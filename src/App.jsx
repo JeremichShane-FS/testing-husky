@@ -5,6 +5,8 @@ import viteLogo from '/vite.svg';
 
 function App() {
   const [count, setCount] = useState(0);
+  const string = "Hello, World!";
+  console.log(string);
 
   return (
     <>
