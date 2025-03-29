@@ -9,13 +9,14 @@ on:
 jobs:
   format:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
         with:
-          # Full git history is needed to get proper list of changed files
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
-          # This is important to ensure we can push back to the repository
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Node.js
